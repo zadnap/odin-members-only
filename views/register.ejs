@@ -24,7 +24,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Trade+Winds&display=swap"
       rel="stylesheet"
     />
     <script
@@ -32,8 +32,94 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="/styles/reset.css" />
-    <link rel="stylesheet" href="/styles/register.css" />
+    <link rel="stylesheet" href="/styles/form.css" />
     <title>Hellfire | Register</title>
   </head>
-  <body></body>
+  <body>
+    <main>
+      <form action="/register" method="post">
+        <header>
+          <h1 class="title">Sign Up</h1>
+          <p class="description">Just a few quick things to get started</p>
+        </header>
+        <fieldset>
+          <legend class="visually-hidden">Register Information</legend>
+          <div class="form-field">
+            <label for="firstname-input">First Name</label>
+            <input
+              name="firstName"
+              type="text"
+              id="firstname-input"
+              placeholder="Enter First Name"
+              autocomplete="given-name"
+              required
+            />
+          </div>
+          <div class="form-field">
+            <label for="lastname-input">Last Name</label>
+            <input
+              name="lastName"
+              type="text"
+              id="lastname-input"
+              placeholder="Enter Last Name"
+              autocomplete="family-name"
+              required
+            />
+          </div>
+          <div class="form-field">
+            <label for="username-input">Username</label>
+            <input
+              name="username"
+              type="text"
+              id="username-input"
+              placeholder="Enter Username"
+              autocomplete="username"
+              required
+            />
+          </div>
+          <div class="form-field">
+            <label for="password-input">Password</label>
+            <input
+              name="password"
+              type="password"
+              id="password-input"
+              placeholder="Enter Password"
+              autocomplete="new-password"
+              minlength="8"
+              required
+            />
+          </div>
+          <div class="form-field">
+            <label for="confirm-password-input">Confirm Password</label>
+            <input
+              name="confirmPassword"
+              type="password"
+              id="confirm-password-input"
+              placeholder="Enter Confirm Password"
+              autocomplete="new-password"
+              minlength="8"
+              required
+            />
+          </div>
+          <div class="form-field checkbox-field">
+            <input
+              name="terms"
+              type="checkbox"
+              id="term-agreement"
+              autocomplete="off"
+              required
+            />
+            <label for="term-agreement">
+              I Agree With The <a href="">Terms And Conditions</a>
+            </label>
+          </div>
+        </fieldset>
+        <button type="submit" class="submit-btn">Sign Up</button>
+        <p class="redirect-link">
+          Already have an account?
+          <a href="/login">Login</a>
+        </p>
+      </form>
+    </main>
+  </body>
 </html>

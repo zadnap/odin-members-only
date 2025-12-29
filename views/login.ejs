@@ -24,7 +24,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Trade+Winds&display=swap"
       rel="stylesheet"
     />
     <script
@@ -32,8 +32,48 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="/styles/reset.css" />
-    <link rel="stylesheet" href="/styles/login.css" />
+    <link rel="stylesheet" href="/styles/form.css" />
     <title>Hellfire | Login</title>
   </head>
-  <body></body>
+  <body>
+    <main>
+      <form class="register-form" action="/register" method="post">
+        <header>
+          <h1 class="title">Log In</h1>
+          <p class="description">Welcome back, you've been missed</p>
+        </header>
+        <fieldset>
+          <legend class="visually-hidden">Log In Information</legend>
+          <div class="form-field">
+            <label for="username-input">Username</label>
+            <input
+              name="username"
+              type="text"
+              id="username-input"
+              placeholder="Enter Username"
+              autocomplete="username"
+              required
+            />
+          </div>
+          <div class="form-field">
+            <label for="password-input">Password</label>
+            <input
+              name="password"
+              type="password"
+              id="password-input"
+              placeholder="Enter Password"
+              autocomplete="new-password"
+              minlength="8"
+              required
+            />
+          </div>
+        </fieldset>
+        <button type="submit" class="submit-btn">Log In</button>
+        <p class="redirect-link">
+          Don't have an account?
+          <a href="/register">Register</a>
+        </p>
+      </form>
+    </main>
+  </body>
 </html>

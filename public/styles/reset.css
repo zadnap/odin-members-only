@@ -128,11 +128,16 @@ table {
   border-spacing: 0;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 :root {
   --primary-color: #b11226;
   --secondary-color: #e25822;
   --background-color: #0b0b0d;
   --text-color: #e6e1d8;
+  --overlay-color: #e6e1d81e;
 
   --gray: #6b6e70;
   --gold: #8c6a2b;
@@ -147,13 +152,8 @@ html {
 }
 
 body {
+  color: var(--text-color);
   font-size: 1.6rem;
-}
-
-.bebas-neue-regular {
-  font-family: 'Bebas Neue', sans-serif;
-  font-weight: 400;
-  font-style: normal;
 }
 
 input,
@@ -162,4 +162,14 @@ button {
   border: none;
   outline: none;
   font: inherit;
+  color: inherit;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
