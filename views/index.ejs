@@ -55,12 +55,12 @@
         <% if (currentUser) { %>
         <ul class="user-menu">
           <li>
-            <a
-              href="/users/<%= currentUser.id %>"
-              class="username <%= currentUser.membershipStatus %>"
-            >
+            <div class="membership"><%= currentUser.membershipStatus %></div>
+          </li>
+          <li>
+            <div class="username <%= currentUser.membershipStatus %>">
               @<%= currentUser.username %>
-            </a>
+            </div>
           </li>
           <li>
             <form action="/logout" method="post">
@@ -130,7 +130,7 @@
           <li>
             <article class="post" aria-labelledby="post-1-title">
               <header class="post-header">
-                <a class="post-author admin" href="/users/zadnap">@zadnap</a>
+                <p class="post-author admin">@zadnap</p>
                 <time class="post-time" datetime="2025-12-29T14:30">
                   29 Dec 2025
                 </time>
@@ -163,26 +163,6 @@
           </li>
         </ul>
       </section>
-      <aside aria-labelledby="users-title" class="section sidebar">
-        <h2 id="users-title" class="section-title">New Users</h2>
-        <ul class="user-list">
-          <li class="user-item admin">
-            <a href="/users/1">Eddie Munson</a>
-          </li>
-          <li class="user-item">
-            <a href="/users/2">Shiki Shirakumo</a>
-          </li>
-          <li class="user-item member">
-            <a href="/users/3">Dustin Henderson</a>
-          </li>
-          <li class="user-item member">
-            <a href="/users/3">Lucas Sinclair</a>
-          </li>
-          <li class="user-item">
-            <a href="/users/3">View More</a>
-          </li>
-        </ul>
-      </aside>
     </main>
     <div
       id="create-post-modal"

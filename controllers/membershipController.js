@@ -4,8 +4,6 @@ const postMember = async (req, res) => {
   const { memberCode } = req.body;
   const { id } = req.user;
 
-  console.log(req.user);
-
   if (memberCode === 'hellfireclub') {
     await updateMembershipStatus(id, 'member');
   }

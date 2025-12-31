@@ -86,16 +86,16 @@ body {
   color: var(--background-color);
 }
 
-.username {
-  text-decoration: none;
-  color: var(--text-color);
-  padding: 7px 10px;
-  border-radius: 5px;
-  font-weight: 600;
+.membership {
+  margin-right: 5px;
+  text-transform: capitalize;
 }
 
-.username:hover {
-  text-decoration: underline;
+.username {
+  color: var(--text-color);
+  padding: 8px 10px;
+  border-radius: 5px;
+  font-weight: 600;
 }
 
 .username.guest {
@@ -230,7 +230,7 @@ main {
 }
 
 .feed {
-  flex: 3;
+  flex: 4;
 }
 
 .post-list {
@@ -257,11 +257,6 @@ main {
 .post-author {
   align-self: flex-start;
   font-weight: 600;
-  text-decoration: none;
-}
-
-.post-author:hover {
-  text-decoration: underline;
 }
 
 .post-author.guest {
@@ -327,52 +322,6 @@ main {
 
 .like-btn.liked .solid-icon {
   display: flex;
-}
-
-.sidebar {
-  position: sticky;
-  top: 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-}
-
-.user-list {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-.user-item {
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  background-color: var(--overlay-color);
-}
-
-.user-item:hover a {
-  text-decoration: underline;
-}
-
-.user-item.member {
-  background-color: var(--primary-color);
-}
-
-.user-item.admin {
-  background-color: var(--secondary-color);
-}
-
-.user-item a {
-  padding: 8px 12px;
-  flex: 1;
-  color: var(--text-color);
-  text-decoration: none;
-}
-
-.user-item:last-child {
-  text-align: center;
 }
 
 .modal {
