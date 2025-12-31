@@ -64,7 +64,8 @@ fieldset {
   color: var(--primary-color);
 }
 
-.field-error {
+.field-error,
+.form-error {
   color: var(--secondary-color);
   font-size: 1.4rem;
 }

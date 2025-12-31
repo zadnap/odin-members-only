@@ -22,10 +22,10 @@ CREATE TABLE IF NOT EXISTS messages (
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS sessions (
+CREATE TABLE IF NOT EXISTS session (
     sid varchar PRIMARY KEY,
     sess json NOT NULL,
     expire timestamp(6) NOT NULL
 );
 
-CREATE INDEX idx_sessions_expire ON sessions (expire);
+CREATE INDEX idx_sessions_expire ON session (expire);

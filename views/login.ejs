@@ -37,7 +37,7 @@
   </head>
   <body>
     <main>
-      <form class="register-form" action="/register" method="post">
+      <form class="register-form" action="/login" method="post">
         <header>
           <h1 class="title">Log In</h1>
           <p class="description">Welcome back, you've been missed</p>
@@ -47,13 +47,22 @@
           <div class="form-field">
             <label for="username-input">Username</label>
             <input
+              aria-describedby="username-error"
+              value="<%= oldData?.username || '' %>"
               name="username"
               type="text"
               id="username-input"
               placeholder="Enter Username"
               autocomplete="username"
+              minlength="5"
+              maxlength="20"
               required
             />
+            <% if (errors?.username) { %>
+            <p id="username-error" class="field-error">
+              <%= errors.username.msg %>
+            </p>
+            <% } %>
           </div>
           <div class="form-field">
             <label for="password-input">Password</label>
@@ -62,12 +71,20 @@
               type="password"
               id="password-input"
               placeholder="Enter Password"
-              autocomplete="new-password"
+              autocomplete="current-password"
               minlength="8"
               required
             />
+            <% if (errors?.password) { %>
+            <p class="field-error"><%= errors.password.msg %></p>
+            <% } %>
           </div>
         </fieldset>
+        <% if (errors?.auth) { %>
+        <div class="form-error" role="alert" aria-live="assertive">
+          <%= errors.auth.msg %>
+        </div>
+        <% } %>
         <button type="submit" class="submit-btn">Log In</button>
         <p class="redirect-link">
           Don't have an account?
