@@ -55,21 +55,23 @@
         <% if (currentUser) { %>
         <ul class="user-menu">
           <li>
-            <a href="/users/1" class="username">@<%= currentUser.username %></a>
+            <a
+              href="/users/<%= currentUser.id %>"
+              class="username <%= currentUser.membershipStatus %>"
+            >
+              @<%= currentUser.username %>
+            </a>
           </li>
           <li>
             <form action="/logout" method="post">
-              <button type="submit" class="logout-btn">
-                <span>Log Out</span>
-                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
-              </button>
+              <button type="submit" class="logout-btn">Log Out</button>
             </form>
           </li>
         </ul>
         <% } else { %>
         <ul class="auth-nav">
-          <li><a class="nav-link" href="/register">Sign Up</a></li>
-          <li><a class="nav-link" href="/login">Log In</a></li>
+          <li><a class="nav-link sign-up-btn" href="/register">Sign Up</a></li>
+          <li><a class="nav-link log-in-btn" href="/login">Log In</a></li>
         </ul>
         <% } %>
       </nav>
@@ -78,7 +80,11 @@
       <h1 class="visually-hidden">Home page</h1>
       <section aria-labelledby="join-club-title" class="section join-club">
         <h2 id="join-club-title" class="section-title">Join Our Club</h2>
-        <form action="/join" method="post" class="join-form">
+        <% if (!currentUser) { %>
+        <p>Sign in to create a new post.</p>
+        <% } else { %>
+        <% if (currentUser.membershipStatus !== 'admin' && currentUser.membershipStatus !== 'member') { %>
+        <form action="/membership/member" method="post" class="join-form">
           <label class="code-label" for="member-code-input">
             Become a Member
           </label>
@@ -92,7 +98,9 @@
           />
           <button class="submit-btn" type="submit">Submit</button>
         </form>
-        <form action="/admin" method="post" class="join-form">
+        <% } %>
+        <% if (currentUser.membershipStatus !== 'admin') { %>
+        <form action="/membership/admin" method="post" class="join-form">
           <label class="code-label admin-code-label" for="admin-code-input">
             Become an Admin
           </label>
@@ -108,9 +116,13 @@
             Submit
           </button>
         </form>
+        <% } %>
+        <% if (currentUser) { %>
         <button class="create-post-btn" id="create-post-btn">
           Create a Post
         </button>
+        <% } %>
+        <% } %>
       </section>
       <section aria-labelledby="feed-title" class="section feed">
         <h2 id="feed-title" class="section-title">Posts</h2>
@@ -118,7 +130,7 @@
           <li>
             <article class="post" aria-labelledby="post-1-title">
               <header class="post-header">
-                <a class="post-author" href="/users/zadnap">@zadnap</a>
+                <a class="post-author admin" href="/users/zadnap">@zadnap</a>
                 <time class="post-time" datetime="2025-12-29T14:30">
                   29 Dec 2025
                 </time>
@@ -136,40 +148,6 @@
               </div>
               <footer class="post-actions">
                 <button class="like-btn liked">
-                  <i
-                    class="fa-regular fa-heart regular-icon"
-                    aria-hidden="true"
-                  ></i>
-                  <i
-                    class="fa-solid fa-heart solid-icon"
-                    aria-hidden="true"
-                  ></i>
-                  <span>120k</span>
-                </button>
-              </footer>
-            </article>
-          </li>
-          <li>
-            <article class="post" aria-labelledby="post-1-title">
-              <header class="post-header">
-                <a class="post-author" href="/users/zadnap">@zadnap</a>
-                <time class="post-time" datetime="2025-12-29T14:30">
-                  29 Dec 2025
-                </time>
-              </header>
-              <div class="post-content">
-                <h3 class="post-title" id="post-1-title">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </h3>
-                <p class="post-description">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Eveniet, itaque ad ea blanditiis modi suscipit corporis
-                  inventore aut, exercitationem velit aperiam dolores nam quos,
-                  quaerat vero debitis sit labore delectus.
-                </p>
-              </div>
-              <footer class="post-actions">
-                <button class="like-btn">
                   <i
                     class="fa-regular fa-heart regular-icon"
                     aria-hidden="true"

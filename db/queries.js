@@ -46,28 +46,63 @@ const deleteMessage = async (id) => {
 };
 
 const getUserById = async (id) => {
-  const { rows } = await pool.query('SELECT * FROM users WHERE id = $1', [id]);
+  const { rows } = await pool.query(
+    `
+    SELECT 
+      id, 
+      first_name AS "firstName", 
+      last_name AS "lastName",
+      username,
+      membership_status AS "membershipStatus"
+    FROM users WHERE id = $1
+    `,
+    [id]
+  );
 
   return rows[0] || null;
 };
 
 const getUserByUsername = async (username) => {
-  const { rows } = await pool.query('SELECT * FROM users WHERE username = $1', [
-    username,
-  ]);
+  const { rows } = await pool.query(
+    `
+    SELECT 
+      id, 
+      first_name AS "firstName", 
+      last_name AS "lastName",
+      username,
+      membership_status AS "membershipStatus",
+      password
+    FROM users WHERE username = $1
+    `,
+    [username]
+  );
 
   return rows[0] || null;
 };
 
 const addUser = async (firstName, lastName, username, password) => {
   const result = await pool.query(
-    `INSERT INTO users (first_name, last_name, username, password) 
+    `
+    INSERT INTO users (first_name, last_name, username, password) 
     VALUES ($1, $2, $3, $4)
-    RETURNING id, first_name, last_name, username`,
+    RETURNING 
+      id, 
+      first_name AS "firstName", 
+      last_name AS "lastName", 
+      username, 
+      membership_status AS "membershipStatus"
+    `,
     [firstName, lastName, username, password]
   );
 
   return result.rows[0];
+};
+
+const updateMembershipStatus = async (id, membershipStatus) => {
+  await pool.query('UPDATE users SET membership_status = $1 WHERE id = $2', [
+    membershipStatus,
+    id,
+  ]);
 };
 
 module.exports = {
@@ -78,4 +113,5 @@ module.exports = {
   getUserById,
   getUserByUsername,
   addUser,
+  updateMembershipStatus,
 };

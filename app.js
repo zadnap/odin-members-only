@@ -9,6 +9,7 @@ const indexRouter = require('./routes/indexRouter');
 const loginRouter = require('./routes/loginRouter');
 const registerRouter = require('./routes/registerRouter');
 const logoutRouter = require('./routes/logoutRouter');
+const membershipRouter = require('./routes/membershipRouter');
 
 const app = express();
 
@@ -39,6 +40,7 @@ app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/logout', logoutRouter);
+app.use('/membership', membershipRouter);
 
 app.listen(process.env.EXPRESS_PORT, (error) => {
   if (error) {
