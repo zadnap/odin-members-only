@@ -45,4 +45,25 @@ const deleteMessage = async (id) => {
   await pool.query('DELETE FROM messages WHERE id = $1', [id]);
 };
 
-module.exports = { countMessages, getMessages, addMessage, deleteMessage };
+const getUserById = async (id) => {
+  const { rows } = await pool.query('SELECT * FROM users WHERE id = $1', [id]);
+
+  return rows[0] || null;
+};
+
+const getUserByUsername = async (username) => {
+  const { rows } = await pool.query('SELECT * FROM users WHERE username = $1', [
+    username,
+  ]);
+
+  return rows[0] || null;
+};
+
+module.exports = {
+  countMessages,
+  getMessages,
+  addMessage,
+  deleteMessage,
+  getUserById,
+  getUserByUsername,
+};

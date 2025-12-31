@@ -20,3 +20,11 @@ CREATE TABLE IF NOT EXISTS messages (
         REFERENCES users (id)
         ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS sessions (
+    sid varchar PRIMARY KEY,
+    sess json NOT NULL,
+    expire timestamp(6) NOT NULL
+);
+
+CREATE INDEX IDX_sessions_expire ON sessions (expire);
