@@ -60,28 +60,7 @@ fieldset {
   border-color: var(--primary-color);
 }
 
-.form-field:has(input:focus):not(.checkbox-field) label {
-  color: var(--primary-color);
-}
-
-.checkbox-field {
-  flex-direction: row;
-  align-items: center;
-  gap: 5px;
-  align-self: center;
-}
-
-.checkbox-field input {
-  width: 15px;
-  height: 15px;
-  accent-color: var(--primary-color);
-}
-
-.checkbox-field label {
-  font-size: 1.4rem;
-}
-
-.checkbox-field label a {
+.form-field:has(input:focus) label {
   color: var(--primary-color);
 }
 
