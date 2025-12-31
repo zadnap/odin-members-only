@@ -6,7 +6,7 @@ const renderRegister = async (req, res) => {
   res.render('register', { oldData: null, errors: null });
 };
 
-const postRegister = async (req, res) => {
+const postRegister = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).render('register', {
@@ -15,11 +15,25 @@ const postRegister = async (req, res) => {
     });
   }
 
-  const { firstName, lastName, username, password } = matchedData(req);
-  const hashedPassword = await bcrypt.hash(password, 10);
-  await addUser(firstName, lastName, username, hashedPassword);
+  try {
+    const { firstName, lastName, username, password } = matchedData(req);
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = await addUser(
+      firstName,
+      lastName,
+      username,
+      hashedPassword
+    );
 
-  res.redirect('/');
+    req.login(newUser, (err) => {
+      if (err) {
+        return next(err);
+      }
+      return res.redirect('/');
+    });
+  } catch (err) {
+    next(err);
+  }
 };
 
 module.exports = { renderRegister, postRegister };

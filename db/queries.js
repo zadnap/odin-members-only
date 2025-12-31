@@ -60,10 +60,14 @@ const getUserByUsername = async (username) => {
 };
 
 const addUser = async (firstName, lastName, username, password) => {
-  await pool.query(
-    'INSERT INTO users (first_name, last_name, username, password) VALUES ($1, $2, $3, $4)',
+  const result = await pool.query(
+    `INSERT INTO users (first_name, last_name, username, password) 
+    VALUES ($1, $2, $3, $4)
+    RETURNING id, first_name, last_name, username`,
     [firstName, lastName, username, password]
   );
+
+  return result.rows[0];
 };
 
 module.exports = {
