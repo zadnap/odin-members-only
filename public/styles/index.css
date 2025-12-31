@@ -156,7 +156,7 @@ main {
   overflow-y: auto;
 }
 
-.create-post-btn {
+.create-message-btn {
   margin-top: auto;
   cursor: pointer;
   padding: 10px;
@@ -166,11 +166,11 @@ main {
   transition: transform ease 0.2s;
 }
 
-.create-post-btn:hover {
+.create-message-btn:hover {
   transform: scale(1.03);
 }
 
-.create-post-btn:active {
+.create-message-btn:active {
   transform: scale(0.97);
 }
 
@@ -233,13 +233,13 @@ main {
   flex: 4;
 }
 
-.post-list {
+.message-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.post {
+.message {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -248,46 +248,46 @@ main {
   border-radius: 5px;
 }
 
-.post-header {
+.message-header {
   display: flex;
   flex-direction: column;
   gap: 7px;
 }
 
-.post-author {
+.message-author {
   align-self: flex-start;
   font-weight: 600;
 }
 
-.post-author.guest {
+.message-author.guest {
   color: var(--text-color);
 }
 
-.post-author.member {
+.message-author.member {
   color: var(--primary-color);
 }
 
-.post-author.admin {
+.message-author.admin {
   color: var(--secondary-color);
 }
 
-.post-time {
+.message-time {
   color: #ad9696;
   font-size: 1.5rem;
   font-weight: 600;
 }
 
-.post-content {
+.message-content {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.post-title {
+.message-title {
   font-weight: 600;
 }
 
-.post-description {
+.message-description {
   line-height: 1.4;
 }
 
@@ -356,7 +356,7 @@ main {
   font-weight: 600;
 }
 
-.create-post-form {
+.create-message-form {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -377,6 +377,11 @@ main {
 
 .form-field textarea {
   resize: none;
+}
+
+.field-error {
+  font-size: 1.4rem;
+  color: var(--secondary-color);
 }
 
 .form-actions {

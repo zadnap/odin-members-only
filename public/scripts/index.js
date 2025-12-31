@@ -1,19 +1,19 @@
-const createPostbtn = document.querySelector('#create-post-btn');
-const createPostModal = document.querySelector('#create-post-modal');
+const createMessagebtn = document.querySelector('#create-message-btn');
+const createMessageModal = document.querySelector('#create-message-modal');
 const closeModalBtn = document.querySelector('#close-modal-btn');
-const createPostForm = document.querySelector('#create-post-form');
+const createMessageForm = document.querySelector('#create-message-form');
 
-createPostbtn.addEventListener('click', () => {
-  createPostModal.classList.add('show');
+createMessagebtn.addEventListener('click', () => {
+  createMessageModal.classList.add('show');
 });
 
 const handleClosingModal = () => {
-  createPostForm.reset();
-  createPostModal.classList.remove('show');
+  createMessageForm.reset();
+  createMessageModal.classList.remove('show');
 };
 
-createPostModal.addEventListener('click', (e) => {
-  if (e.target === createPostModal) {
+createMessageModal.addEventListener('click', (e) => {
+  if (e.target === createMessageModal) {
     handleClosingModal();
   }
 });

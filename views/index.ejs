@@ -81,7 +81,7 @@
       <section aria-labelledby="join-club-title" class="section join-club">
         <h2 id="join-club-title" class="section-title">Join Our Club</h2>
         <% if (!currentUser) { %>
-        <p>Sign in to create a new post.</p>
+        <p>Sign in to post a new message.</p>
         <% } else { %>
         <% if (currentUser.membershipStatus !== 'admin' && currentUser.membershipStatus !== 'member') { %>
         <form action="/membership/member" method="post" class="join-form">
@@ -118,35 +118,35 @@
         </form>
         <% } %>
         <% if (currentUser) { %>
-        <button class="create-post-btn" id="create-post-btn">
-          Create a Post
+        <button class="create-message-btn" id="create-message-btn">
+          Post a Message
         </button>
         <% } %>
         <% } %>
       </section>
       <section aria-labelledby="feed-title" class="section feed">
-        <h2 id="feed-title" class="section-title">Posts</h2>
-        <ul class="post-list">
+        <h2 id="feed-title" class="section-title">Message</h2>
+        <ul class="message-list">
           <li>
-            <article class="post" aria-labelledby="post-1-title">
-              <header class="post-header">
-                <p class="post-author admin">@zadnap</p>
-                <time class="post-time" datetime="2025-12-29T14:30">
+            <article class="message" aria-labelledby="message-1-title">
+              <header class="message-header">
+                <p class="message-author admin">@zadnap</p>
+                <time class="message-time" datetime="2025-12-29T14:30">
                   29 Dec 2025
                 </time>
               </header>
-              <div class="post-content">
-                <h3 class="post-title" id="post-1-title">
+              <div class="message-content">
+                <h3 class="message-title" id="message-1-title">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </h3>
-                <p class="post-description">
+                <p class="message-description">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Eveniet, itaque ad ea blanditiis modi suscipit corporis
                   inventore aut, exercitationem velit aperiam dolores nam quos,
                   quaerat vero debitis sit labore delectus.
                 </p>
               </div>
-              <footer class="post-actions">
+              <footer class="message-actions">
                 <button class="like-btn liked">
                   <i
                     class="fa-regular fa-heart regular-icon"
@@ -165,41 +165,61 @@
       </section>
     </main>
     <div
-      id="create-post-modal"
-      class="modal"
+      id="create-message-modal"
+      class="modal <%= oldData ? 'show' : '' %>"
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
       hidden
     >
       <div class="modal-content">
-        <h2 id="create-post-title" class="modal-title">Create New Post</h2>
+        <h2 id="create-message-title" class="modal-title">
+          Create New Message
+        </h2>
         <form
-          action="/posts"
+          action="/message"
           method="post"
-          class="create-post-form"
-          id="create-post-form"
+          class="create-message-form"
+          id="create-message-form"
         >
           <div class="form-field">
-            <label for="post-title">Title</label>
+            <label for="message-title">Title</label>
             <input
+              value="<%= oldData?.title || '' %>"
               type="text"
-              id="post-title"
+              id="message-title"
               name="title"
-              placeholder="Enter Post Title"
+              placeholder="Enter Message Title"
               required
+              minlength="5"
+              maxlength="100"
               autocomplete="off"
+              aria-describedby="title-error"
+              aria-invalid="<%= errors?.title ? 'true' : 'false' %>"
             />
+            <% if (errors?.title) { %>
+            <p id="title-error" class="field-error"><%= errors.title.msg %></p>
+            <% } %>
           </div>
           <div class="form-field">
-            <label for="post-description">Description</label>
+            <label for="message-description">Description</label>
             <textarea
-              id="post-description"
+              value="<%= oldData?.description || '' %>"
+              id="message-description"
               name="description"
-              placeholder="Enter Post Description"
+              placeholder="Enter Message Description"
               rows="8"
+              minlength="5"
+              maxlength="250"
               required
+              aria-describedby="description-error"
+              aria-invalid="<%= errors?.description ? 'true' : 'false' %>"
             ></textarea>
+            <% if (errors?.description) { %>
+            <p id="description-error" class="field-error">
+              <%= errors.description.msg %>
+            </p>
+            <% } %>
           </div>
           <div class="form-actions">
             <button type="submit" class="submit-btn">Post</button>
