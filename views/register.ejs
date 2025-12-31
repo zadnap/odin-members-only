@@ -47,35 +47,54 @@
           <div class="form-field">
             <label for="firstname-input">First Name</label>
             <input
+              maxlength="50"
+              value="<%= oldData?.firstName || '' %>"
               name="firstName"
               type="text"
               id="firstname-input"
               placeholder="Enter First Name"
               autocomplete="given-name"
+              aria-invalid="<%= errors?.firstName ? 'true' : 'false' %>"
               required
             />
+            <% if (errors?.firstName) { %>
+            <p class="field-error"><%= errors.firstName.msg %></p>
+            <% } %>
           </div>
           <div class="form-field">
             <label for="lastname-input">Last Name</label>
             <input
+              maxlength="50"
+              value="<%= oldData?.lastName || '' %>"
               name="lastName"
               type="text"
               id="lastname-input"
               placeholder="Enter Last Name"
               autocomplete="family-name"
+              aria-invalid="<%= errors?.lastName ? 'true' : 'false' %>"
               required
             />
+            <% if (errors?.lastName) { %>
+            <p class="field-error"><%= errors.lastName.msg %></p>
+            <% } %>
           </div>
           <div class="form-field">
             <label for="username-input">Username</label>
             <input
+              minlength="5"
+              maxlength="20"
+              value="<%= oldData?.username || '' %>"
               name="username"
               type="text"
               id="username-input"
               placeholder="Enter Username"
               autocomplete="username"
+              aria-invalid="<%= errors?.username ? 'true' : 'false' %>"
               required
             />
+            <% if (errors?.username) { %>
+            <p class="field-error"><%= errors.username.msg %></p>
+            <% } %>
           </div>
           <div class="form-field">
             <label for="password-input">Password</label>
@@ -86,8 +105,12 @@
               placeholder="Enter Password"
               autocomplete="new-password"
               minlength="8"
+              aria-invalid="<%= errors?.password ? 'true' : 'false' %>"
               required
             />
+            <% if (errors?.password) { %>
+            <p class="field-error"><%= errors.password.msg %></p>
+            <% } %>
           </div>
           <div class="form-field">
             <label for="confirm-password-input">Confirm Password</label>
@@ -98,8 +121,12 @@
               placeholder="Enter Confirm Password"
               autocomplete="new-password"
               minlength="8"
+              aria-invalid="<%= errors?.confirmPassword ? 'true' : 'false' %>"
               required
             />
+            <% if (errors?.confirmPassword) { %>
+            <p class="field-error"><%= errors.confirmPassword.msg %></p>
+            <% } %>
           </div>
         </fieldset>
         <button type="submit" class="submit-btn">Sign Up</button>

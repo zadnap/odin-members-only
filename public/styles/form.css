@@ -64,6 +64,15 @@ fieldset {
   color: var(--primary-color);
 }
 
+.field-error {
+  color: var(--secondary-color);
+  font-size: 1.4rem;
+}
+
+input[aria-invalid='true'] {
+  border-color: var(--secondary-color);
+}
+
 .submit-btn {
   font-family: 'Trade Winds', system-ui;
   border-radius: 5px;

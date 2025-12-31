@@ -5,7 +5,8 @@ CREATE TABLE IF NOT EXISTS users (
     username VARCHAR(100) NOT NULL UNIQUE,
     password TEXT NOT NULL,
     membership_status TEXT NOT NULL 
-        CHECK (membership_status IN ('guest', 'member', 'admin')),
+        CHECK (membership_status IN ('guest', 'member', 'admin'))
+        DEFAULT 'guest',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -27,4 +28,4 @@ CREATE TABLE IF NOT EXISTS sessions (
     expire timestamp(6) NOT NULL
 );
 
-CREATE INDEX IDX_sessions_expire ON sessions (expire);
+CREATE INDEX idx_sessions_expire ON sessions (expire);

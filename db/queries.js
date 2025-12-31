@@ -59,6 +59,13 @@ const getUserByUsername = async (username) => {
   return rows[0] || null;
 };
 
+const addUser = async (firstName, lastName, username, password) => {
+  await pool.query(
+    'INSERT INTO users (first_name, last_name, username, password) VALUES ($1, $2, $3, $4)',
+    [firstName, lastName, username, password]
+  );
+};
+
 module.exports = {
   countMessages,
   getMessages,
@@ -66,4 +73,5 @@ module.exports = {
   deleteMessage,
   getUserById,
   getUserByUsername,
+  addUser,
 };
