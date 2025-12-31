@@ -1,5 +1,5 @@
 const renderIndex = async (req, res) => {
-  res.render('index', { user: {} });
+  res.render('index');
 };
 
 module.exports = { renderIndex };

@@ -52,10 +52,10 @@
         </a>
       </div>
       <nav class="menu" aria-label="Primary navigation">
-        <% if (user) { %>
+        <% if (currentUser) { %>
         <ul class="user-menu">
           <li>
-            <a href="/users/1" class="username">@zadnap</a>
+            <a href="/users/1" class="username">@<%= currentUser.username %></a>
           </li>
           <li>
             <form action="/logout" method="post">

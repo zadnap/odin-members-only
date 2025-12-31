@@ -8,6 +8,7 @@ const path = require('path');
 const indexRouter = require('./routes/indexRouter');
 const loginRouter = require('./routes/loginRouter');
 const registerRouter = require('./routes/registerRouter');
+const logoutRouter = require('./routes/logoutRouter');
 
 const app = express();
 
@@ -37,6 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
+app.use('/logout', logoutRouter);
 
 app.listen(process.env.EXPRESS_PORT, (error) => {
   if (error) {
