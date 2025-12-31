@@ -1,4 +1,5 @@
 const { body } = require('express-validator');
+const { getUserByUsername } = require('../db/queries');
 
 const registerValidator = [
   body('firstName')
@@ -24,7 +25,16 @@ const registerValidator = [
     .withMessage('Username must be between 5 and 20 characters')
     .bail()
     .matches(/^[a-zA-Z0-9_]+$/)
-    .withMessage('Username can only contain letters, numbers, and underscores'),
+    .withMessage('Username can only contain letters, numbers, and underscores')
+    .bail()
+    .custom(async (username) => {
+      const user = await getUserByUsername(username);
+      if (user) {
+        throw new Error('Username already exists');
+      }
+      return true;
+    }),
+  ,
   body('password')
     .notEmpty()
     .withMessage('Password is required')
