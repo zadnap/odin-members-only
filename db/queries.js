@@ -18,9 +18,10 @@ const getMessages = async (page = 1) => {
     `SELECT
       messages.id,
       messages.title,
-      messages.content,
+      messages.description,
       messages.created_at AS "createdAt",
       users.id AS "userId",
+      users.username AS "username",
       users.first_name AS "firstName",
       users.last_name AS "lastName",
       users.membership_status AS "membershipStatus"
@@ -34,10 +35,10 @@ const getMessages = async (page = 1) => {
   return rows;
 };
 
-const addMessage = async (title, content, author) => {
+const addMessage = async (title, description, author) => {
   await pool.query(
-    'INSERT INTO messages (title, content, created_by) VALUES ($1, $2, $3)',
-    [title, content, author]
+    'INSERT INTO messages (title, description, created_by) VALUES ($1, $2, $3)',
+    [title, description, author]
   );
 };
 

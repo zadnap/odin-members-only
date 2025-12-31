@@ -1,5 +1,8 @@
+const { getMessages } = require('../db/queries');
+
 const renderIndex = async (req, res) => {
-  res.render('index', { errors: null, oldData: null });
+  const messages = await getMessages();
+  res.render('index', { messages, errors: null, oldData: null });
 };
 
 module.exports = { renderIndex };

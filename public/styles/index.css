@@ -157,7 +157,6 @@ main {
 }
 
 .create-message-btn {
-  margin-top: auto;
   cursor: pointer;
   padding: 10px;
   background-color: var(--overlay-color);
@@ -291,37 +290,16 @@ main {
   line-height: 1.4;
 }
 
-.like-btn {
-  display: flex;
-  align-items: center;
-  gap: 7px;
+.delete-btn {
   cursor: pointer;
   padding: 7px;
   border-radius: 5px;
-  transition:
-    background-color ease 0.2s,
-    color ease 0.2s;
-}
-
-.like-btn:hover {
+  transition: color ease 0.2s;
   background-color: var(--overlay-color);
 }
 
-.like-btn .solid-icon {
-  display: none;
-}
-
-.like-btn.liked {
+.delete-btn:hover {
   color: var(--primary-color);
-  background-color: var(--overlay-color);
-}
-
-.like-btn.liked .regular-icon {
-  display: none;
-}
-
-.like-btn.liked .solid-icon {
-  display: flex;
 }
 
 .modal {

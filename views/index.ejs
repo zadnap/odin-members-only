@@ -125,42 +125,43 @@
         <% } %>
       </section>
       <section aria-labelledby="feed-title" class="section feed">
-        <h2 id="feed-title" class="section-title">Message</h2>
+        <h2 id="feed-title" class="section-title">Messages</h2>
         <ul class="message-list">
+          <% messages.forEach((message) => { %>
           <li>
-            <article class="message" aria-labelledby="message-1-title">
+            <article
+              class="message"
+              aria-labelledby="message-<%= message.id %>-title"
+            >
               <header class="message-header">
-                <p class="message-author admin">@zadnap</p>
-                <time class="message-time" datetime="2025-12-29T14:30">
-                  29 Dec 2025
+                <% if (currentUser?.membershipStatus === 'admin' ||
+                currentUser?.membershipStatus === 'member') { %>
+                <p class="message-author <%= message.membershipStatus %>">
+                  From: <%= message.firstName %> <%= message.lastName %> (@<%=
+                  message.username %>)
+                </p>
+                <time class="message-time" datetime="<%= message.createdAt %>">
+                  <%= new Date(message.createdAt).toLocaleDateString('en-GB', {
+                  day: '2-digit', month: 'short', year: 'numeric' }) %>
                 </time>
+                <% } else { %>
+                <p class="message-author">From: Anonymous User</p>
+                <% } %>
               </header>
               <div class="message-content">
-                <h3 class="message-title" id="message-1-title">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                <h3 class="message-title" id="message-<%= message.id %>-title">
+                  Title: <%= message.title %>
                 </h3>
-                <p class="message-description">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Eveniet, itaque ad ea blanditiis modi suscipit corporis
-                  inventore aut, exercitationem velit aperiam dolores nam quos,
-                  quaerat vero debitis sit labore delectus.
-                </p>
+                <p class="message-description"><%= message.description %></p>
               </div>
+              <% if (currentUser?.membershipStatus === 'admin') { %>
               <footer class="message-actions">
-                <button class="like-btn liked">
-                  <i
-                    class="fa-regular fa-heart regular-icon"
-                    aria-hidden="true"
-                  ></i>
-                  <i
-                    class="fa-solid fa-heart solid-icon"
-                    aria-hidden="true"
-                  ></i>
-                  <span>120k</span>
-                </button>
+                <button class="delete-btn">Delete</button>
               </footer>
+              <% } %>
             </article>
           </li>
+          <% }) %>
         </ul>
       </section>
     </main>
