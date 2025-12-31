@@ -1,9 +1,13 @@
 const express = require('express');
-const { postMessage } = require('../controllers/messageController');
+const {
+  postMessage,
+  removeMessage,
+} = require('../controllers/messageController');
 const messageValidator = require('../validators/messageValidator');
 
 const messageRouter = express.Router();
 
 messageRouter.post('/', messageValidator, postMessage);
+messageRouter.delete('/:id', removeMessage);
 
 module.exports = messageRouter;

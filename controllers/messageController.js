@@ -1,5 +1,5 @@
 const { validationResult, matchedData } = require('express-validator');
-const { addMessage, getMessages } = require('../db/queries');
+const { addMessage, getMessages, deleteMessage } = require('../db/queries');
 
 const postMessage = async (req, res) => {
   const errors = validationResult(req);
@@ -19,4 +19,12 @@ const postMessage = async (req, res) => {
   res.redirect('/');
 };
 
-module.exports = { postMessage };
+const removeMessage = async (req, res) => {
+  const messageId = req.params.id;
+
+  await deleteMessage(messageId);
+
+  res.redirect('/');
+};
+
+module.exports = { postMessage, removeMessage };

@@ -5,6 +5,7 @@ const passport = require('passport');
 const pgSession = require('connect-pg-simple')(session);
 const pool = require('./db/pool');
 const path = require('path');
+const methodOverride = require('method-override');
 const indexRouter = require('./routes/indexRouter');
 const loginRouter = require('./routes/loginRouter');
 const registerRouter = require('./routes/registerRouter');
@@ -14,6 +15,7 @@ const messageRouter = require('./routes/messageRouter');
 
 const app = express();
 
+app.use(methodOverride('_method'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
