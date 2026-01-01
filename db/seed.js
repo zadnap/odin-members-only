@@ -16,6 +16,7 @@ async function main() {
     database: PG_DATABASE,
     password: PG_PASSWORD,
     port: PG_PORT,
+    ssl: { require: true, rejectUnauthorized: false },
   });
 
   await client.connect();
